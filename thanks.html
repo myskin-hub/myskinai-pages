@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>결과 확인 페이지</title>
+</head>
+<body style="text-align: center; font-family: sans-serif; margin-top: 100px;">
+  <h2>상담이 완료되었습니다!</h2>
+  <p>아래 버튼을 눌러 결과를 확인해 주세요.</p>
+  <a id="resultLink" href="#" target="_blank">
+    <button style="padding: 12px 24px; font-size: 16px;">결과 확인하러 가기</button>
+  </a>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    const resultUrl = "https://script.google.com/macros/s/AKfycby-jLm162BRyLl7bivVwcHANGYc5m39Vuf_XwthEZ4jJKnRORA1BcsET0bakGTXLmJimA/exec?id=" + id;
+    document.getElementById("resultLink").href = resultUrl;
+  </script>
+</body>
+</html>
