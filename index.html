@@ -145,7 +145,7 @@
 
       const queryString = new URLSearchParams(formData).toString();
 
-      fetch(`https://script.google.com/macros/s/AKfycbxReGrHoh-wljyIRjZgVIUyxJP1V60CVEnJSHJuQgJb-9PWK7wBtRMGj2DQqy8K-LSX9A/exec?${queryString}`)
+      fetch(`https://script.google.com/macros/s/AKfycbz-H-2fIyTrWmv-7n0HOrOnq7cHONsVBa_411cYvRCj4fUP-I4TvIKyJm88nAenoxge3g/exec?${queryString}`)
         .then(response => response.json())
         .then(data => {
           const resultId = data.id;
