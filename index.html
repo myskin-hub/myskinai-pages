@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI 피부 분석 요청</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 피부 상담 설문</title>
   <style>
     body {
       font-family: "Noto Sans KR", sans-serif;
-      background-color: #f7f7f7;
-      padding: 20px;
+      background-color: #f2f0fa;
+      padding: 24px;
     }
     .form-wrapper {
       max-width: 640px;
-      margin: 0 auto;
-      background: white;
-      padding: 32px;
+      margin: auto;
+      background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 32px;
     }
     h2 {
       text-align: center;
+      color: #4b2caf;
       margin-bottom: 24px;
     }
     .form-group {
@@ -27,7 +28,7 @@
     }
     label {
       display: block;
-      font-weight: 500;
+      font-weight: bold;
       margin-bottom: 8px;
     }
     input[type="text"],
@@ -40,45 +41,53 @@
       border: 1px solid #ccc;
       font-size: 16px;
     }
-    .checkbox-group,
-    .radio-group {
-      padding-left: 8px;
-    }
-    .checkbox-group label,
-    .radio-group label {
+    .radio-group label,
+    .checkbox-group label {
       display: block;
       margin-bottom: 6px;
+    }
+    .radio-group,
+    .checkbox-group {
+      padding-left: 8px;
     }
     button {
       width: 100%;
       padding: 12px;
       font-size: 18px;
-      background-color: #4285f4;
+      background-color: #4b2caf;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
     button:hover {
-      background-color: #3367d6;
+      background-color: #3a2194;
+    }
+    .highlight {
+      color: #d32f2f;
+      font-weight: 500;
     }
     small {
       color: #666;
-      font-size: 12px;
+      font-size: 13px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <div class="form-wrapper">
-    <h2>AI 피부 분석 요청</h2>
+    <h2>AI 피부 상담 설문</h2>
+    <p>해당 설문은 AI 기반 피부 상담에 사용됩니다.<br>
+    입력해주신 내용은 오직 분석용으로만 사용되며 외부에 공개되지 않습니다.</p>
+
     <form id="skinForm">
       <div class="form-group">
-        <label>이름 (단답형)</label>
+        <label>이름 *</label>
         <input type="text" name="name" required>
       </div>
 
       <div class="form-group">
-        <label>성별 (객관식)</label>
+        <label>성별 *</label>
         <div class="radio-group">
           <label><input type="radio" name="gender" value="남성" required> 남성</label>
           <label><input type="radio" name="gender" value="여성"> 여성</label>
@@ -86,20 +95,20 @@
       </div>
 
       <div class="form-group">
-        <label>나이대 (체크박스)</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="ageRange" value="10대"> 10대</label>
-          <label><input type="checkbox" name="ageRange" value="20대"> 20대</label>
-          <label><input type="checkbox" name="ageRange" value="30대"> 30대</label>
-          <label><input type="checkbox" name="ageRange" value="40대"> 40대</label>
-          <label><input type="checkbox" name="ageRange" value="50대"> 50대</label>
-          <label><input type="checkbox" name="ageRange" value="60대"> 60대</label>
-          <label><input type="checkbox" name="ageRange" value="70대 이상"> 70대 이상</label>
+        <label>나이대 *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="ageRange" value="10대" required> 10대</label>
+          <label><input type="radio" name="ageRange" value="20대"> 20대</label>
+          <label><input type="radio" name="ageRange" value="30대"> 30대</label>
+          <label><input type="radio" name="ageRange" value="40대"> 40대</label>
+          <label><input type="radio" name="ageRange" value="50대"> 50대</label>
+          <label><input type="radio" name="ageRange" value="60대"> 60대</label>
+          <label><input type="radio" name="ageRange" value="70대 이상"> 70대 이상</label>
         </div>
       </div>
 
       <div class="form-group">
-        <label>고민 부위 (체크박스)</label>
+        <label>고민 부위</label>
         <div class="checkbox-group">
           <label><input type="checkbox" name="concernArea" value="이마"> 이마</label>
           <label><input type="checkbox" name="concernArea" value="볼"> 볼</label>
@@ -110,6 +119,11 @@
           <label><input type="checkbox" name="concernArea" value="목"> 목</label>
           <label><input type="checkbox" name="concernArea" value="기타"> 기타</label>
         </div>
+      </div>
+
+      <div class="form-group">
+        <label>현재 피부 고민을 자유롭게 적어주세요</label>
+        <textarea name="problemDetail" rows="4"></textarea>
       </div>
 
       <div class="form-group">
@@ -124,13 +138,8 @@
       </div>
 
       <div class="form-group">
-        <label>현재 피부 고민을 자유롭게 적어주세요</label>
-        <textarea name="problemDetail" rows="4" required></textarea>
-      </div>
-
-      <div class="form-group">
         <label>경험한 시술 또는 제품이 있다면 적어주세요</label>
-        <textarea name="treatmentHistory" rows="3"></textarea>
+        <input type="text" name="treatmentHistory">
       </div>
 
       <div class="form-group">
@@ -141,15 +150,21 @@
       <div class="form-group">
         <label>얼굴 사진 첨부 (선택)</label>
         <input type="file" name="photo">
-        <small>❗정면, 측면 사진이 모두 있을 경우 분석 정확도가 올라갑니다.<br>
-        ❗ 조명이 밝은 곳에서 촬영해 주세요.<br>
-        ❗ 사진은 외부에 공개되지 않으며, AI 분석을 위한 목적으로만 사용됩니다.</small>
+        <small>
+          <span class="highlight">❗ 정면, 측면 사진이 모두 있을 경우 분석 정확도가 올라갑니다.</span><br>
+          <span class="highlight">❗ 조명이 밝은 곳에서 촬영해 주세요.</span><br>
+          <span class="highlight">❗ 사진은 외부에 공개되지 않으며, AI 분석을 위한 목적으로만 사용됩니다.</span>
+        </small>
       </div>
 
       <div class="form-group">
-        <label><input type="checkbox" name="consent" value="동의함" required> 개인정보 수집 및 AI 분석에 동의합니다</label>
-        <small>본 상담 신청을 통해 제공하신 이름, 피부 상태 정보, 사진 등은 AI 기반 피부 분석 및 상담 결과 제공 목적으로만 사용됩니다.<br>
-        수집된 정보는 외부에 공개되지 않으며, 마케팅 목적 등으로 사용되지 않습니다.</small>
+        <label><input type="checkbox" name="consent" value="동의함" required> 개인정보 수집 및 AI 분석 동의 *</label>
+        <small>
+          본 상담 신청을 통해 제공하신 이름, 피부 상태 정보, 사진 등은 AI 기반 피부 분석 및 상담 결과 제공 목적으로만 사용됩니다.<br>
+          <strong>수집 항목:</strong> 이름, 피부 정보, 피부 사진(선택 시) 등<br>
+          <strong>사용 목적:</strong> AI 분석 및 개인 맞춤형 피부 상담 제공<br>
+          수집된 정보는 외부에 공개되지 않으며, 마케팅 목적 등으로 사용되지 않습니다.
+        </small>
       </div>
 
       <button type="submit">제출하기</button>
