@@ -135,7 +135,7 @@
         name: document.getElementById("name").value,
         gender: document.querySelector("input[name='gender']:checked")?.value || "",
         ageRange: document.querySelector("input[name='ageRange']:checked")?.value || "",
-        concernArea: Array.from(document.querySelectorAll("input[name='concernArea[]']:checked")).map(el => el.value),
+        concernArea: Array.from(document.querySelectorAll("input[name='concernArea[]']:checked")).map(el => el.value).join(", "),
         problemDetail: document.getElementById("problemDetail").value,
         treatmentHistory: document.getElementById("treatmentHistory").value,
         expectation: document.getElementById("expectation").value,
@@ -143,22 +143,18 @@
         consent: document.getElementById("consent").checked ? "동의" : ""
       };
 
-      fetch("https://script.google.com/macros/s/AKfycbxReGrHoh-wljyIRjZgVIUyxJP1V60CVEnJSHJuQgJb-9PWK7wBtRMGj2DQqy8K-LSX9A/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        const resultId = data.id;
-        window.location.href = `https://myskin-hub.github.io/myskinai-pages/?id=${resultId}`;
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("제출 중 문제가 발생했습니다. 다시 시도해주세요.");
-      });
+      const queryString = new URLSearchParams(formData).toString();
+
+      fetch(`https://script.google.com/macros/s/AKfycbxReGrHoh-wljyIRjZgVIUyxJP1V60CVEnJSHJuQgJb-9PWK7wBtRMGj2DQqy8K-LSX9A/exec?${queryString}`)
+        .then(response => response.json())
+        .then(data => {
+          const resultId = data.id;
+          window.location.href = `https://myskin-hub.github.io/myskinai-pages/?id=${resultId}`;
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("제출 중 문제가 발생했습니다. 다시 시도해주세요.");
+        });
     });
   </script>
 </body>
