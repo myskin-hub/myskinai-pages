@@ -3,172 +3,164 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI 피부 상담 설문</title>
+  <title>AI 피부 상담 신청</title>
   <style>
     body {
-      font-family: "Noto Sans KR", sans-serif;
-      background-color: #f2f0fa;
-      padding: 24px;
-    }
-    .form-wrapper {
-      max-width: 640px;
+      font-family: Arial, sans-serif;
+      max-width: 600px;
       margin: auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 32px;
+      padding: 20px;
     }
-    h2 {
-      text-align: center;
-      color: #4b2caf;
-      margin-bottom: 24px;
-    }
-    .form-group {
-      margin-bottom: 20px;
+    h1 {
+      color: #333;
     }
     label {
       display: block;
+      margin-top: 20px;
       font-weight: bold;
-      margin-bottom: 8px;
-    }
-    input[type="text"],
-    input[type="url"],
-    input[type="file"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .radio-group label,
-    .checkbox-group label {
-      display: block;
-      margin-bottom: 6px;
-    }
-    .radio-group,
-    .checkbox-group {
-      padding-left: 8px;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      font-size: 18px;
-      background-color: #4b2caf;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #3a2194;
     }
     .highlight {
-      color: #d32f2f;
-      font-weight: 500;
+      color: red;
+      font-weight: bold;
     }
-    small {
-      color: #666;
-      font-size: 13px;
-      line-height: 1.6;
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    .checkbox-group, .radio-group {
+      margin-top: 10px;
+    }
+    .checkbox-group label, .radio-group label {
+      font-weight: normal;
+      display: block;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="form-wrapper">
-    <h2>AI 피부 상담 설문</h2>
-    <p>해당 설문은 AI 기반 피부 상담에 사용됩니다.<br>
-    입력해주신 내용은 오직 분석용으로만 사용되며 외부에 공개되지 않습니다.</p>
+  <h1>AI 피부 상담 신청</h1>
+  <form id="aiSkinForm">
+    <label>이름
+      <input type="text" id="name" required>
+    </label>
 
-    <form id="skinForm">
-      <div class="form-group">
-        <label>이름 *</label>
-        <input type="text" name="name" required>
-      </div>
+    <label>성별</label>
+    <div class="radio-group">
+      <label><input type="radio" name="gender" value="남성" required> 남성</label>
+      <label><input type="radio" name="gender" value="여성"> 여성</label>
+    </div>
 
-      <div class="form-group">
-        <label>성별 *</label>
-        <div class="radio-group">
-          <label><input type="radio" name="gender" value="남성" required> 남성</label>
-          <label><input type="radio" name="gender" value="여성"> 여성</label>
-        </div>
-      </div>
+    <label>나이대</label>
+    <div class="radio-group">
+      <label><input type="radio" name="ageRange" value="10대" required> 10대</label>
+      <label><input type="radio" name="ageRange" value="20대"> 20대</label>
+      <label><input type="radio" name="ageRange" value="30대"> 30대</label>
+      <label><input type="radio" name="ageRange" value="40대"> 40대</label>
+      <label><input type="radio" name="ageRange" value="50대"> 50대</label>
+      <label><input type="radio" name="ageRange" value="60대"> 60대</label>
+      <label><input type="radio" name="ageRange" value="70대 이상"> 70대 이상</label>
+    </div>
 
-      <div class="form-group">
-        <label>나이대 *</label>
-        <div class="radio-group">
-          <label><input type="radio" name="ageRange" value="10대" required> 10대</label>
-          <label><input type="radio" name="ageRange" value="20대"> 20대</label>
-          <label><input type="radio" name="ageRange" value="30대"> 30대</label>
-          <label><input type="radio" name="ageRange" value="40대"> 40대</label>
-          <label><input type="radio" name="ageRange" value="50대"> 50대</label>
-          <label><input type="radio" name="ageRange" value="60대"> 60대</label>
-          <label><input type="radio" name="ageRange" value="70대 이상"> 70대 이상</label>
-        </div>
-      </div>
+    <label>고민 부위 (중복 선택 가능)</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="concernArea[]" value="이마"> 이마</label>
+      <label><input type="checkbox" name="concernArea[]" value="볼"> 볼</label>
+      <label><input type="checkbox" name="concernArea[]" value="턱"> 턱</label>
+      <label><input type="checkbox" name="concernArea[]" value="코"> 코</label>
+      <label><input type="checkbox" name="concernArea[]" value="팔자"> 팔자</label>
+      <label><input type="checkbox" name="concernArea[]" value="눈가"> 눈가</label>
+      <label><input type="checkbox" name="concernArea[]" value="목"> 목</label>
+      <label><input type="checkbox" name="concernArea[]" value="기타"> 기타</label>
+    </div>
 
-      <div class="form-group">
-        <label>고민 부위</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="concernArea" value="이마"> 이마</label>
-          <label><input type="checkbox" name="concernArea" value="볼"> 볼</label>
-          <label><input type="checkbox" name="concernArea" value="턱"> 턱</label>
-          <label><input type="checkbox" name="concernArea" value="코"> 코</label>
-          <label><input type="checkbox" name="concernArea" value="팔자"> 팔자</label>
-          <label><input type="checkbox" name="concernArea" value="눈가"> 눈가</label>
-          <label><input type="checkbox" name="concernArea" value="목"> 목</label>
-          <label><input type="checkbox" name="concernArea" value="기타"> 기타</label>
-        </div>
-      </div>
+    <label>현재 피부 고민을 자유롭게 적어주세요
+      <textarea id="problemDetail" rows="3" required></textarea>
+    </label>
 
-      <div class="form-group">
-        <label>현재 피부 고민을 자유롭게 적어주세요</label>
-        <textarea name="problemDetail" rows="4"></textarea>
-      </div>
+    <label>경험한 시술 또는 제품이 있다면 적어주세요
+      <textarea id="treatmentHistory" rows="2"></textarea>
+    </label>
 
-      <div class="form-group">
-        <label>피부 타입</label>
-        <div class="radio-group">
-          <label><input type="radio" name="skinType" value="지성" required> 지성</label>
-          <label><input type="radio" name="skinType" value="건성"> 건성</label>
-          <label><input type="radio" name="skinType" value="복합성"> 복합성</label>
-          <label><input type="radio" name="skinType" value="민감성"> 민감성</label>
-          <label><input type="radio" name="skinType" value="잘 모르겠음"> 잘 모르겠음</label>
-        </div>
-      </div>
+    <label>어떤 변화나 기대 효과를 원하시나요?
+      <textarea id="expectation" rows="2"></textarea>
+    </label>
 
-      <div class="form-group">
-        <label>경험한 시술 또는 제품이 있다면 적어주세요</label>
-        <input type="text" name="treatmentHistory">
-      </div>
+    <label>피부 타입</label>
+    <div class="radio-group">
+      <label><input type="radio" name="skinType" value="지성" required> 지성</label>
+      <label><input type="radio" name="skinType" value="건성"> 건성</label>
+      <label><input type="radio" name="skinType" value="복합성"> 복합성</label>
+      <label><input type="radio" name="skinType" value="민감성"> 민감성</label>
+      <label><input type="radio" name="skinType" value="잘 모르겠음"> 잘 모르겠음</label>
+    </div>
 
-      <div class="form-group">
-        <label>어떤 변화나 기대 효과를 원하시나요?</label>
-        <textarea name="expectation" rows="3"></textarea>
-      </div>
+    <label>얼굴 사진 첨부 (선택)<br>
+      <span class="highlight">❗ 정면, 측면 사진이 모두 있을 경우 분석 정확도가 올라갑니다.</span><br>
+      <span class="highlight">❗ 조명이 밝은 곳에서 촬영해 주세요.</span><br>
+      <span class="highlight">❗ 사진은 외부에 공개되지 않으며, AI 분석을 위한 목적으로만 사용됩니다.</span><br>
+      <input type="file" id="photo">
+    </label>
 
-      <div class="form-group">
-        <label>얼굴 사진 첨부 (선택)</label>
-        <input type="file" name="photo">
-        <small>
-          <span class="highlight">❗ 정면, 측면 사진이 모두 있을 경우 분석 정확도가 올라갑니다.</span><br>
-          <span class="highlight">❗ 조명이 밝은 곳에서 촬영해 주세요.</span><br>
-          <span class="highlight">❗ 사진은 외부에 공개되지 않으며, AI 분석을 위한 목적으로만 사용됩니다.</span>
-        </small>
-      </div>
+    <label>
+      <input type="checkbox" id="consent" required>
+      <span class="highlight">[필수] 본 상담 신청을 통해 제공하신 이름, 피부 상태 정보, 사진 등은 AI 기반 피부 분석 및 상담 결과 제공 목적으로만 사용됩니다.</span><br>
+      수집 항목: 이름, 피부 정보, 피부 사진(선택 시) 등<br>
+      사용 목적: AI 분석 및 개인 맞춤형 피부 상담 제공<br>
+      수집된 정보는 외부에 공개되지 않으며, 마케팅 목적 등으로 사용되지 않습니다.
+    </label>
 
-      <div class="form-group">
-        <label><input type="checkbox" name="consent" value="동의함" required> 개인정보 수집 및 AI 분석 동의 *</label>
-        <small>
-          본 상담 신청을 통해 제공하신 이름, 피부 상태 정보, 사진 등은 AI 기반 피부 분석 및 상담 결과 제공 목적으로만 사용됩니다.<br>
-          <strong>수집 항목:</strong> 이름, 피부 정보, 피부 사진(선택 시) 등<br>
-          <strong>사용 목적:</strong> AI 분석 및 개인 맞춤형 피부 상담 제공<br>
-          수집된 정보는 외부에 공개되지 않으며, 마케팅 목적 등으로 사용되지 않습니다.
-        </small>
-      </div>
+    <button type="submit">제출</button>
+  </form>
 
-      <button type="submit">제출하기</button>
-    </form>
-  </div>
+  <script>
+    const form = document.getElementById("aiSkinForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        gender: document.querySelector("input[name='gender']:checked")?.value || "",
+        ageRange: document.querySelector("input[name='ageRange']:checked")?.value || "",
+        concernArea: Array.from(document.querySelectorAll("input[name='concernArea[]']:checked")).map(el => el.value),
+        problemDetail: document.getElementById("problemDetail").value,
+        treatmentHistory: document.getElementById("treatmentHistory").value,
+        expectation: document.getElementById("expectation").value,
+        skinType: document.querySelector("input[name='skinType']:checked")?.value || "",
+        consent: document.getElementById("consent").checked ? "동의" : ""
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbxReGrHoh-wljyIRjZgVIUyxJP1V60CVEnJSHJuQgJb-9PWK7wBtRMGj2DQqy8K-LSX9A/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        const resultId = data.id;
+        window.location.href = `https://myskin-hub.github.io/myskinai-pages/?id=${resultId}`;
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("제출 중 문제가 발생했습니다. 다시 시도해주세요.");
+      });
+    });
+  </script>
 </body>
 </html>
+
